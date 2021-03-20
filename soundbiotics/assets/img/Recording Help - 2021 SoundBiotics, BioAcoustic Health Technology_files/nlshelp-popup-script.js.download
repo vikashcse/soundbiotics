@@ -1,0 +1,26 @@
+function Onload(){
+	setTimeout(function(){
+		var style = document.createElement( "link" );
+		style.rel = "stylesheet";
+		style.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/fontawesome.min.css";
+		document.getElementsByTagName('body')[0].appendChild(style);
+		setTimeout(function(){
+			console.log('1sec for loading message icon');
+			var div = document.createElement( "div" )
+			div.innerHTML = ' <a  id="nls_openModel" class="trigger-nls-btn spin" ><i class="fa fa-comments-o" aria-hidden="true"></i></a><div id="nls-help-form-popup"></div>';
+			document.getElementsByTagName('body')[0].appendChild(div);
+			setTimeout(function(){
+				console.log('3sec for loading popup');
+				$("#nls-help-form-popup").load("https://nlshelpforms.s3.amazonaws.com/FormToSendMail.html?2.0");
+				setTimeout(function(){
+					console.log('10sec for popup');
+					$("#nls_openModel").trigger('click');
+					openPopup();
+				},10000);//10sec for popup
+			},3000);//3sec for loading popup
+		},1000);//1sec for loading message icon
+	},500);//0.5sec for loading fontawesome
+	
+}
+Onload();
+console.log('script on load');
